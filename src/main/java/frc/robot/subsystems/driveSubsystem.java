@@ -27,9 +27,9 @@ public class driveSubsystem extends SubsystemBase {
     ChassisSpeeds speeds = new ChassisSpeeds(0.0001, 0, 0);
 
     // Convert to module states
-        SwerveModuleState[] moduleStates = kinematics.toSwerveModuleStates(speeds);
+    SwerveModuleState[] moduleStates = kinematics.toSwerveModuleStates(speeds);
 
-        // Front left module state
+    // Front left module state
     SwerveModuleState frontLeft = moduleStates[0];
 
     // Front right module state
