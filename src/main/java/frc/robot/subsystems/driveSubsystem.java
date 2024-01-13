@@ -5,11 +5,15 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.math.controller.BangBangController;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -20,26 +24,33 @@ public class driveSubsystem extends SubsystemBase {
   private final static CANSparkMax leftLeader = new CANSparkMax(1, MotorType.kBrushless);
   private final static CANSparkMax leftFollower = new CANSparkMax(3, MotorType.kBrushless);
 
+  private final static BangBangController controller = new BangBangController();
+
+  private final static RelativeEncoder encoderFR = rightLeader.getEncoder();
+  private final static RelativeEncoder encoderFL = leftLeader.getEncoder();
+  private final static RelativeEncoder encoderBR = rightFollower.getEncoder();
+  private final static RelativeEncoder encoderBL = leftFollower.getEncoder();
+
   
   SwerveDriveKinematics kinematics;
 
   public driveSubsystem() {
-    ChassisSpeeds speeds = new ChassisSpeeds(0.0001, 0, 0);
+    //ChassisSpeeds speeds = new ChassisSpeeds(0.0001, 0, 0);
 
     // Convert to module states
-    SwerveModuleState[] moduleStates = kinematics.toSwerveModuleStates(speeds);
+    //SwerveModuleState[] moduleStates = kinematics.toSwerveModuleStates(speeds);
 
     // Front left module state
-    SwerveModuleState frontLeft = moduleStates[0];
+    //SwerveModuleState frontLeft = moduleStates[0];
 
     // Front right module state
-    SwerveModuleState frontRight = moduleStates[1];
+    //SwerveModuleState frontRight = moduleStates[1];
 
     // Back left module state
-    SwerveModuleState backLeft = moduleStates[2];
+    //SwerveModuleState backLeft = moduleStates[2];
 
     // Back right module state
-    SwerveModuleState backRight = moduleStates[3];  
+    //SwerveModuleState backRight = moduleStates[3];  
   }
 
   @Override
@@ -52,6 +63,23 @@ public class driveSubsystem extends SubsystemBase {
     rightLeader.set(rightF);
     rightFollower.set(rightB);
     leftFollower.set(leftB);
+  }
+
+  public static RelativeEncoder getEncoderFL(){
+    return encoderFL;
+  }
+
+  public static RelativeEncoder getEncoderFR(){
+    return encoderFR;
+  }
+
+  public void driveAlign(double pitch){
+      if(pitch > 0){
+        leftLeader.set(controller.calculate(encoderFL.getPosition(), Math.abs(pitch)));
+      }
+      else {
+        rightLeader.set(controller.calculate(encoderFR.getPosition(), Math.abs(pitch)));
+      }
   }
   
 }

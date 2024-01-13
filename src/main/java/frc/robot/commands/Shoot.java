@@ -22,7 +22,8 @@ public class Shoot extends CommandBase{
   
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(shooterSubystem);
-  }
+    }
+    
     public void execute() {;
         shooterSubystem.shoot(shootDo.getAsBoolean());
     }
