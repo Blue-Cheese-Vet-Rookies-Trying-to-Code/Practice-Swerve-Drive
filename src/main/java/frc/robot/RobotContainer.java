@@ -21,9 +21,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final driveSubsystem m_DriveSubsystem = new driveSubsystem();
-  private final intakeSubsystem m_IntakeSubsystem = new intakeSubsystem();
+  private final shooterSubystem m_IntakeSubsystem = new shooterSubystem();
   XboxController joy = new XboxController(0);
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -42,9 +41,7 @@ public class RobotContainer {
   );
 
   m_IntakeSubsystem.setDefaultCommand(
-  new Intake(m_IntakeSubsystem, 
-  () -> joy.getAButton(), 
-  () -> joy.getAButton(),
+  new Shoot(m_IntakeSubsystem, 
   () -> joy.getYButton())
   );
   }
