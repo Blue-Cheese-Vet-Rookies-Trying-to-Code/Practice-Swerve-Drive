@@ -9,9 +9,8 @@ import edu.wpi.first.math.controller.PIDController;
 
 public class intakeSubsystem extends SubsystemBase {
 
-  static CANSparkMax intake = new CANSparkMax(31, MotorType.kBrushless);
-  static CANSparkMax indexL = new CANSparkMax(21, MotorType.kBrushless);
-  static CANSparkMax indexR = new CANSparkMax(22, MotorType.kBrushless);
+  static CANSparkMax intakeU = new CANSparkMax(22, MotorType.kBrushless); //need actual value and motor type
+  static CANSparkMax intakeL = new CANSparkMax(21, MotorType.kBrushless); //need actual value and motor type
 
   static Solenoid intakeSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 3);
 
@@ -41,22 +40,19 @@ public class intakeSubsystem extends SubsystemBase {
 
   public static void intake(boolean doIntake){
     if (doIntake){
-      indexL.set(0.75);
-      indexR.set(0.75);
-      intake.set(0.75);
+      intakeU.set(0.75);
+      intakeL.set(0.75);
     }
     else{
-      indexL.set(0);
-      indexR.set(0);
-      intake.set(0);
+        intakeU.set(0);
+        intakeL.set(0);
     }
   } 
   
   public static void clear(boolean doClear){
     if (doClear){
-      indexL.set(-0.75);
-      indexR.set(-0.75);
-      intake.set(-0.75);
+      intakeL.set(-0.75);
+      intakeU.set(-0.75);
     }
   } 
 }

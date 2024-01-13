@@ -44,7 +44,7 @@ public class RobotContainer {
   m_IntakeSubsystem.setDefaultCommand(
   new Intake(m_IntakeSubsystem, 
   () -> joy.getAButton(), 
-  () -> joy.getXButton(),
+  () -> joy.getAButton(),
   () -> joy.getYButton())
   );
   }
