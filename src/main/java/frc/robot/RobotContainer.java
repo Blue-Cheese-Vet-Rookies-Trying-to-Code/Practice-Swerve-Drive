@@ -23,6 +23,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final driveSubsystem m_DriveSubsystem = new driveSubsystem();
+  private final intakeSubsystem m_IntakeSubsystem = new intakeSubsystem();
   XboxController joy = new XboxController(0);
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -38,6 +39,13 @@ public class RobotContainer {
     () -> (joy.getRawAxis(1) + joy.getRawAxis(4)) * -0.1, //FR
     () -> (joy.getRawAxis(1) - joy.getRawAxis(4)) * -0.1, //BL
     () -> (joy.getRawAxis(1) + joy.getRawAxis(4)) * -0.1) //BR
+  );
+
+  m_IntakeSubsystem.setDefaultCommand(
+  new Intake(m_IntakeSubsystem, 
+  () -> joy.getAButton(), 
+  () -> joy.getXButton(),
+  () -> joy.getYButton())
   );
   }
 
