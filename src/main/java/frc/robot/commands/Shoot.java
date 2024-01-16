@@ -18,6 +18,7 @@ public class Shoot extends CommandBase{
 
     public Shoot(shooterSubystem shooterSubystem, BooleanSupplier shootDo) {
         this.shootDo = shootDo;
+
         m_subsystem = shooterSubystem;
   
     // Use addRequirements() here to declare subsystem dependencies.

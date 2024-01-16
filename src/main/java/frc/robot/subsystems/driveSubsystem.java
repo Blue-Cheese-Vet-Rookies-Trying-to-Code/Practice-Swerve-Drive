@@ -50,7 +50,9 @@ public class driveSubsystem extends SubsystemBase {
     //SwerveModuleState backLeft = moduleStates[2];
 
     // Back right module state
-    //SwerveModuleState backRight = moduleStates[3];  
+    //SwerveModuleState backRight = moduleStates[3]; 
+    leftFollower.follow(leftLeader);
+    rightFollower.follow(rightLeader); 
   }
 
   @Override
@@ -61,8 +63,6 @@ public class driveSubsystem extends SubsystemBase {
   public void set(double leftF, double rightF, double leftB, double rightB) {
     leftLeader.set(leftF);
     rightLeader.set(rightF);
-    rightFollower.set(rightB);
-    leftFollower.set(leftB);
   }
 
   public static RelativeEncoder getEncoderFL(){

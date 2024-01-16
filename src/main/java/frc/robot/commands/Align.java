@@ -23,7 +23,7 @@ public class Align extends CommandBase{
     private final BooleanSupplier alignDo;
 
     private final RelativeEncoder encoderFL = driveSubsystem.getEncoderFL();
-    private final RelativeEncoder encoderFR = driveSubsystem.getEncoderFR();
+    private final RelativeEncoder encoderFR = driveSubsystem.getEncoderFR(); 
 
     double yaw;
     double pitch;

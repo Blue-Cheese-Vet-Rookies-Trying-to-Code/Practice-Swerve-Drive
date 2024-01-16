@@ -42,13 +42,12 @@ public class shooterSubystem extends SubsystemBase {
 
   public static void shoot(boolean doShoot){
     if (doShoot){
-      shooterU.set(0.75);
-      shooterL.set(0.75);
+      shooterU.set(1);
+      shooterL.set(0.8*1);
     }
     else{
         shooterU.set(0);
         shooterL.set(0);
     }
   } 
-
 }
